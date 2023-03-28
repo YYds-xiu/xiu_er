@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.main{
+				width: 100%;
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background: url(img/10010.jpg) no-repeat 0px 0px/cover;
+			}
+			.logoImg{
+				text-align: center;
+				position: relative;
+			}
+			.logo{
+				width: 600px;
+			}
+			.about_btn,.start_btn{
+				width: 160px;
+				margin: 0px 30px;
+			}
+			.about_content{
+				position:absolute;
+				width: 250px;
+				left: -300px;
+				top: 100px;
+				display: none;
+			}
+			.header{
+				display: flex;
+				align-items: center;
+				position: fixed;
+				top: 20px;
+				left: 20px;
+				display: none;
+			}
+			.header>div{
+				height: 50px;
+				line-height: 50px;
+				position: relative;
+			}
+			.header>div img{
+				height: 100%;
+			}
+			.level,.score_box{
+				position: absolute;
+				right: 15px;
+				top: 0;
+				color: gold;
+				font-weight: 900;
+			}
+			.times{
+				width: 358px;
+			    height: 18px;
+			    position: absolute;
+			    left: 67px;
+			    top: 21px;
+			    border-radius: 10px;
+			    overflow: hidden;
+			}
+			.times_pro{
+				width: 100%;
+			    height: 18px;
+			    background: url(img/xjybg.png) no-repeat 0px 0px/358px 18px;
+			    border-radius: 10px;
+			}
+			.active{
+				position: fixed;
+				width: 163px;
+				height: 117px;
+				top: 100px;
+				left: 100px;
+				background: url(img/10012.gif) no-repeat;
+				color: black;
+				font-size: 45px;
+				font-weight: 900;
+			}	
+			.active p{
+				position: absolute;
+				top: -6px;
+				left: 43px;
+				text-shadow: 2px 2px 0px gold;
+			}		
+			.bubble{
+				position: fixed;
+				width: 44px;
+				height: 39px;
+				top: 100vh;
+				left: 100%;
+			}
+			.pop_up{
+				position: fixed;
+				top: 0;
+				left: 0px;
+				width: 100%;
+				height: 100%;
+				background: rgba(0,0,0,0.7);
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				display: none;
+			}
+			.game_over span{
+				display: inline-block;
+				padding: 20px 40px;
+				height:30px;
+				color: white;
+				font-size: 24px;
+				font-weight: 900;
+				line-height: 20px;
+				margin: 20px ;
+				cursor: pointer;
+				background: url(img/btn1.png) no-repeat 0px 0px/100% 100%;
+			}
+			.to_menu,.next_start{
+				display: none;
+			}
+		</style>
+		<script type="text/javascript">
+			document.addEventListener("DOMContentLoaded",function(){
+				var	about_btn = document.querySelector(".about_btn");
+				var start_btn = document.querySelector(".start_btn");
+				var about_content = document.querySelector(".about_content");
+				var logoImg = document.querySelector(".logoImg");
+				var header = document.querySelector(".header");
+				var GoldFish_box = document.querySelector(".GoldFish_box");
+				var getScore_el = document.querySelector(".getScore_el");
+				var times_pro = document.querySelector(".times_pro");
+				var pop_up = document.querySelector(".pop_up");
+				var reset_start = document.querySelector(".reset_start");
+				var targetScore_el = document.querySelector(".targetScore_el");
+				var to_menu = document.querySelector('.to_menu');
+				var next_start = document.querySelector(".next_start");
+				var level = document.querySelector(".level");
+				var speed=3;//速度
+				var getScore=0;//得分
+				var startTime = 0;//记录开始游戏的时间
+				var times = 30000;//游戏总时长
+				var targetScore = 5;//目标分数
+				var level_num = 1;//关卡
+				var t1;//
+				var t2;
+				var ss = 1000;
+				targetScore_el.innerHTML = targetScore;
+				//点击about
+				about_btn.onclick = function(){					
+					console.log(getComputedStyle(about_content,null)["display"]);
+					if(getComputedStyle(about_content,null)["display"]=="none"){
+						about_content.style.display="block";
+					}else{
+						about_content.style.display="none";
+					}
+				}
+				about_content.onclick = function(){
+					about_content.style.display="none";
+				}
+				//点击start
+				start_btn.onclick = function(){
+					var d = new Date();
+					startTime = d.valueOf();
+					logoImg.style.display="none";
+					header.style.display="flex";
+					t1 = setInterval(creatGoldFish,ss);//创建金鱼
+					t2 = setInterval(creatBubble,3000);	//创建气泡
+					requestAnimationFrame(GoldFishMove);
+				}
+				//创建一条金鱼
+				function creatGoldFish(){
+					var div = document.createElement("div");
+					var p = document.createElement("p");
+					var n1 = String.fromCharCode(Math.floor(Math.random()*26)+65);
+					p.innerHTML = n1;
+					div.setAttribute("name",n1);
+					div.className="active";
+					div.appendChild(p);
+					GoldFish_box.appendChild(div);
+					div.style.top = Math.floor(Math.random()*(window.innerHeight-div.offsetHeight))+"px";
+					div.style.left = window.innerWidth+"px";									
+				}		
+				//金鱼移动
+				function GoldFishMove(){
+					var d = new Date();
+					var newTime = d.valueOf();
+					console.log((newTime-startTime)/times)
+					times_pro.style.width =100-(newTime-startTime)/times*100 +"%";
+					var GoldFishs = document.querySelectorAll(".active");
+					for(var i=0;i<GoldFishs.length;i++){
+						//超出左边屏幕则删除节点
+						if(GoldFishs[i].offsetLeft<=-GoldFishs[i].offsetWidth){
+							GoldFishs[i].parentNode.removeChild(GoldFishs[i]);
+						}else{
+							//改变金鱼位置
+							GoldFishs[i].style.left = GoldFishs[i].offsetLeft-speed+"px";
+						}	
+					} 
+					
+					if(newTime-startTime>=times){
+						//游戏时间结束le;
+						clearInterval(t1);
+						clearInterval(t2);
+						window.onkeyup = null;
+						pop_up.style.display="flex";
+						//判断是否可以进行下一关
+						if(getScore-targetScore>=0){
+							to_menu.style.display="none";
+							next_start.style.display="inline-block";
+						}else{
+							to_menu.style.display="inline-block";
+							next_start.style.display="none";
+						}
+					}else{
+						requestAnimationFrame(GoldFishMove);
+					}
+					
+				}
+				//创建一个气泡
+				function creatBubble(){
+					var img = document.createElement("img");
+					img.src="img/10011.png";
+					img.className="bubble";
+					GoldFish_box.appendChild(img);
+					img.style.top = window.innerHeight+"px";
+					img.style.left = Math.floor(Math.random()*(window.innerWidth-img.offsetWidth))+"px";					
+					setTimeout(function(){
+						img.style.transition="top 10s linear";
+						img.style.top = -img.offsetHeight+"px";
+						setTimeout(function(){
+							GoldFish_box.removeChild(img);
+						},10000)
+					},100)
+				}	
+				//按下键盘
+				window.onkeyup = keyup;
+				function keyup(e){
+					var e = e||event;
+					var letter = String.fromCharCode(e.keyCode);
+					var GoldFishs = document.querySelectorAll(".active");
+					//匹配字母是否相同，相同则分数加一，删除节点
+					for(var i=0;i<GoldFishs.length;i++){
+						if(GoldFishs[i].getAttribute("name")==letter){
+							GoldFish_box.removeChild(GoldFishs[i]);
+							getScore++;
+							getScore_el.innerHTML = getScore;
+							break;//一次只能删除一个字母
+						}
+					}
+				}
+				//重新开始
+				reset_start.onclick = function(){
+					gameInit();
+				}
+				function gameInit(){
+					pop_up.style.display="none";
+					var activeAll = document.querySelectorAll(".active");
+					for(var i=0;i<activeAll.length;i++){
+						GoldFish_box.removeChild(activeAll[i]);
+					}
+					getScore=0;
+					getScore_el.innerHTML = getScore;
+					var d = new Date();
+					startTime = d.valueOf();
+					t1 = setInterval(creatGoldFish,ss);//创建金鱼
+					t2 = setInterval(creatBubble,3000);	//创建气泡
+					requestAnimationFrame(GoldFishMove);
+					times_pro.style.width = "100%";
+					window.onkeyup = keyup;
+				}
+				//返回菜单
+				to_menu.onclick = function(){
+					location.href="index.html";
+				}
+				//下一关
+				next_start.onclick = function(){
+					level_num++;
+					level.innerHTML ="关卡"+level_num;
+					
+					targetScore +=10;
+					targetScore_el.innerHTML =targetScore; 
+					speed+=3;
+					ss-=200;
+					if(ss<=100){
+						ss=100;
+					}
+					gameInit();
+				}
+			})
+		</script>
+	</head>
+	<body>
+		<div class="main">
+			<div class="header">
+				<div>
+					<img src="img/QQ截图20230223143052.png" />
+					<p class="level">关卡1</p>
+				</div>
+				<div>
+					<img src="img/QQ截图20230223143052.png" />
+					<p class="score_box">目标:<b class="targetScore_el">20</b></p>
+				</div>
+				<div>
+					<img src="img/QQ截图20230223143052.png" />
+					<p class="score_box">分数:<b class="getScore_el">0</b></p>
+				</div>
+				<div>
+					<img src="img/未标题ss-2.png" />
+					<div class="times">
+						<div class="times_pro"></div>
+					</div>
+				</div>
+			</div>
+			<div class="logoImg">
+				<img class="logo" src="img/10001.png" />
+				<div>
+					<img class="about_btn" src="img/10002.png" />
+					<img class="start_btn" src="img/10003.png" />
+				</div>
+				<img  class="about_content" src="img/10004.png" />
+			</div>		
+			<div class="GoldFish_box">
+				
+			</div>
+			<div class="pop_up">
+				<div class="game_over">
+					<img src="img/Img317621019.png" />
+					<div>
+						<span class="reset_start">重新开始</span>
+						<span class="to_menu">返回菜单</span>
+						<span class="next_start">下一关</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
