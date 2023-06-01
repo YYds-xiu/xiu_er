@@ -1,0 +1,441 @@
+
+/* -------简介------- */
+.jianjie-tou{
+	height: 400px;
+}
+.jianjie-tou>div>img{
+	height: 400px;
+}
+
+/* 学校简介 */
+.xuexjj{
+	margin-top:50px ;
+	padding: 30px;
+	
+}
+.xuexjj-bt{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 40px 0;
+	color: #545454;
+}
+.xuexjj-bt>h2{
+	margin-bottom: 15px;
+}
+.xuexjj-nei{
+	margin-left: 20px;
+}
+.xuexjj-nei h3,.xuexjj-nei p{
+	margin: 30px 0;
+	line-height: 30px;
+	color: #313131;
+}
+/* 学校精神 */
+.xuexjs{
+	display: flex;
+	justify-content: space-between;
+	background: rgba(233, 233, 233, 0.5);
+	height: 200px;
+	padding: 50px 0;
+	transition: all 1s;
+}
+.xuexjs-bt{
+	margin-left: 150px;
+	width: 50%;
+	border-right: solid 2px #cecece;
+	color: #282828;
+	transition: all 1s;
+}
+.xuexjs-nei{
+	margin: 0 30px;
+}
+.xuexjs-nei>h3{
+	margin-bottom: 30px;
+	color: #313131;
+}
+.xuexjs-nei>p{
+	line-height: 30px;
+	color: #545454;
+}
+.xuexjs:hover{
+	background: rgba(85, 85, 255, 0.5);
+}
+.xuexjs:hover .xuexjs-bt{
+	color: white;
+	margin-right: 100px;
+}
+
+/* 学校发展历程 */
+.xxjj-fazhuang{
+	margin-top: 30px;
+	width: 100%;
+}
+.fz-img{
+	height: 300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: url(../img/sanjut/fazhuan-logo.jpeg) no-repeat 0 0/100% 100%;
+}
+.fz-textImg{
+	color: #666666;
+	font-size: 25px;
+	transition: all 1s; 
+}	
+.fz-neir{
+	background: rgba(233, 233, 233, 0.4);
+	padding-top: 20px;
+	display: flex;
+	position: relative;
+}
+.neir-deng{
+	width: 350px;
+	margin-left: 140px;
+}
+.fz-time{
+	height: 20px;
+	padding-bottom: 10px;
+	border-bottom:solid 1px rgb(97, 97, 97) ;
+	transition: all 1s;
+	color: #363636;
+}
+.fz-shijian{
+	height: 260px;
+	color: #545454;
+	line-height: 20px;
+}
+.fz-shijian>p{
+	margin: 20px 0;
+	transition: all 1s;
+}
+.fz-img:hover .fz-textImg{
+	margin-top: -20px;
+	color: #0c126b;
+}
+.neir-deng:hover .fz-time{
+	border-bottom:solid 3px rgb(0, 85, 255) ;
+	color: rgb(0, 85, 255);
+}
+.neir-deng:hover .fz-shijian>p{
+	color: rgb(23, 17, 217);
+	font-weight: 600;
+}
+/* 学校官网 */
+.fudong-xx{
+	position: absolute;
+	right: 20px;
+	bottom: 100px;
+}
+.fudong-xx:hover span{
+	color: blue;
+}
+.zye-lj:hover a{
+	color: blue;
+}
+/* 学院简介 */
+.xueyjj-nei{
+	text-align: center;
+	line-height: 35px;
+	color: #545454;
+}
+.xueyjj-zye{
+	width: 100%;
+	margin-bottom: 50px;
+}
+.zye-bt{
+	margin: 40px 60px;
+	border-bottom: solid 1px blue;
+	position: relative;
+}
+.zye-lj{
+	width: 200px;
+	height: 30px;
+	position: absolute;
+	top: 10px;
+	right: 20px;
+}
+.zye-bt>h2{
+	margin-bottom: 10px;
+	color: #0c126b;
+}
+.xueyuan-zyjs{
+	width: 100%;
+	height: 300px;
+	display: flex;
+}
+.xx{
+	width: 35%;
+	
+}
+.xy{
+	width: 65%;
+	
+}
+.xx,.xy{
+	position: relative;
+}
+.xy-zy-js>h3 {
+	position: absolute;
+	top: 20%;
+	left: 10%;
+	color: white;
+	z-index: 22;
+}
+.xy-zy-js>p{
+	position: absolute;
+	top: 28%;
+	left: 10%;
+	color: white;
+	max-width: 70%;
+	z-index: 22;
+	display: none;
+	transition: all 1s;
+}
+.xy-zy-js:hover p{
+	display: block;
+}
+.xy-zy-js:hover .rgzn-m{
+	background: rgb(3, 49, 255);
+}
+.xy-zy-js:hover .rj-m{
+	background: rgb(97, 104, 211);
+}
+.xy-zy-js:hover .dsj-m{
+	background: rgb(85, 170, 255);
+}
+.xy-zy-js:hover .jy-m{
+	background: rgb(85, 255, 255);
+}
+.xy-zy-js:hover .jw-m{
+	background: rgb(152, 0, 114);
+}
+.xy-zy-js:hover .xa-m{
+	background: rgb(86, 0, 0);
+}
+.xy-zy-js:hover .yddx-m{
+	background: rgb(240, 0, 0);
+}
+.xy-zy-js:hover .wlw-m{
+	background: rgb(211, 0, 105);
+}
+.xy-mengban {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 10;
+	transition: all 1s;
+}
+.rgzn{
+	background: url(../img/sanjut/rgzn-xy.jpeg) no-repeat 0 0 /100% 100%;
+}
+.rj{
+	background: url(../img/sanjut/rj-xy.jpeg) no-repeat 0 0 /100% 100%;
+}
+.dsj{
+	background: url(../img/sanjut/dsj-xy.jpg) no-repeat 0 0 /100% 100%;
+}
+.jy{
+	background: url(../img/sanjut/jy-xy.png) no-repeat 0 0 /100% 100%;
+}
+.jw{
+	background: url(../img/sanjut/jw-xy.jpg) no-repeat 0 0 /100% 100%;
+}
+.xa{
+	background: url(../img/sanjut/xa-xy.jpeg) no-repeat 0 0 /100% 100%;
+}
+.yddx{
+	background: url(../img/sanjut/yddx-xy.png) no-repeat 0 0 /100% 100%;
+}
+.wlw{
+	background: url(../img/sanjut/wlw-xy.jpg) no-repeat 0 0 /100% 100%;
+}
+.rgzn-m{
+	background: rgba(3, 49, 255, 0.4);
+}
+.rj-m{
+	background: rgba(97, 104, 211, 0.4);
+}
+.dsj-m{
+	background: rgba(85, 170, 255, 0.4);
+}
+.jy-m{
+	background: rgba(85, 255, 255, 0.4);
+}
+.jw-m{
+	background: rgba(152, 0, 114, 0.4);
+}
+.xa-m{
+	background: rgba(86, 0, 0, 0.4);
+}
+.yddx-m{
+	background: rgba(240, 0, 0, 0.4);
+}
+.wlw-m{
+	background: rgba(211, 0, 105, 0.4);
+}
+
+/* ----班级简介----- */
+.bj-jj-nt{
+	background: url(../img/lunbo2.jpg) no-repeat 0 0 /100% 110%;
+	height: 600px;
+	position: relative;
+}	
+.bj-jj-ns{
+	/* background: url(../img/.jpg) no-repeat 0 0 /100% 100%; */
+	height: 600px;
+	position: relative;
+}
+.bj-ss-textnr:hover{
+	background-color: rgba(23, 85, 255, 0.4);
+}
+.bj-ss-textnr:hover h3{
+	color: white;
+}
+.bj-ss-textnr:hover p{
+	color: white;
+}
+.bj-ss-textnr{
+	width: 600px;
+	height: 400px;
+	background-color: rgba(255, 255, 255, 0.4);
+	transition: all 1s;
+}
+.bj-nt{
+	position: absolute;
+	top: 100px;
+	left: -30px;
+	border-left: solid 2px blue;
+}
+.bj-ns{
+	position: absolute;
+	top: 100px;
+	right: -30px;
+	border-right: solid 2px blue;
+}
+.bj-ss-textnr>div{
+	margin: 50px;
+	text-align: center;
+}
+.bj-ss-textnr h3{
+	margin-bottom: 20px;
+	transition: all 1s;
+}
+.bj-ss-textnr p{
+		line-height: 26px;
+		color: #535353;
+		transition: all 1s;
+}
+.jjbj-text{
+	width: 100%;
+	height: 384px;
+	margin-bottom: 30PX;
+	position: relative;
+	background: url(../img/sanjut/bjjj-bj-logo.jpg) no-repeat 0 0 /100% 100% ;
+}
+.jjbj-mengbt{
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 85, 255, 0.2);
+	display: flex;
+	justify-content: space-between;
+	transition: all 1s;
+}
+.jjbj-mengbt:hover{
+	background-color: rgba(0, 85, 255, 0.4);
+}
+.jjbj-text-box{
+	margin: 40px 40px ;
+	
+}
+.jjbj-text-box{
+	width: 45%;
+}
+.jjbj-text-box>h3{
+	color: white;
+	margin-left: 30px;
+	font-size: 22px;
+	margin-bottom: 20px;
+}
+.jjbj-text-box>span{
+	line-height: 40px;
+	color: white;
+}
+.jjbj-bjtu-xz{
+	margin: 10px;
+	width: 53%;
+	overflow: hidden;
+}
+.jjbj-bjtu-xz:hover img{
+	transform: scale(1.2,1.2);
+}
+.jjbj-clj-p:hover a{
+	color: white;
+}
+.jjbj-bjtu-xz>img{
+	width: 100%;
+	height: 100%;
+	transition: all 1s;
+}
+.jjbj-clj-p{
+	position: absolute;
+	bottom: 40px;
+	left: 30%;
+}
+.jjbj-clj-p>a{
+	color: f#dcdcdc;
+}
+
+/*想了解我们更多*/
+.ljwm-lj{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+}
+.bj-ljwom:hover h2{
+	margin-top: -20px;
+}
+.bj-ljwom:hover .ljwm-toup>img{
+	transform: scale(1.2,1.2);
+}
+.bj-ljwom{
+	width: 80%;
+	height: 300px;
+	margin: 20px auto;
+	display: flex;
+}
+.bj-ljwom>a{
+	width: 40%;
+	height: 300px;
+}
+.ljwm-lj{
+	height: 300px;
+	background: #52f7f7;
+	display: flex;
+	justify-content: center;
+	
+}
+.ljwm-lj>h2{
+transition: all 1s;	
+}
+.ljwm-imgbox{
+	display: flex;
+	margin: 10px 0;
+	
+}
+.ljwm-imgbox>span{
+	line-height: 15px;
+	margin-right: 5px;
+}
+.ljwm-img{
+	width: 30px;
+	height: 15px;
+}
+.ljwm-toup{
+	overflow: hidden;
+}
+.ljwm-toup>img{
+	height: 300px;
+	transition: all 1s;
+}

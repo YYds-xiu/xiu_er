@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>成员   </title>
+		<link rel="stylesheet" href="../css/common.css">
+		<link rel="stylesheet" href="../css/chengyuan.css">
+	</head>
+	<body>
+		<div></div>
+		<div class="nav-com-tou jianjie-tou">
+			<div>
+				<img src="../img/sanjut/zytd-logo.jpeg"/>
+				<div class="nav-com-img-text">
+					<h2>班 级 成 员</h2>
+					<span>以 后 你 会 是 什 么 样 子</span>
+				</div>
+			</div>
+		</div>
+		<div class="com-daohl">
+			<div class="com-da0hl-nei">
+				<a href="../index.html">首页</a><span>></span><a href="#">成员</a>
+			</div>
+		</div>
+		<div class="neir-com-obox">
+			<div class="nei-com-bt">
+				<div class="nei-com-bt-box">
+					<h2>班 级 成 员</h2>
+					<p>- Class Members -</p>
+				</div>
+			</div>
+		</div>
+		<div id="cy-lieb"> 
+			<div class="cy-tb">
+				<h3>班 级 导 师</h3>
+			</div>
+			<div class="cy-com">
+				<div class="chengyuan cy-ds-color" v-for="site in sites">
+					<a href="#">
+						<div class="imgbox">
+							<img :src="site.src"/>
+						</div>
+						<div class="per-occ cy-ds-kk">
+							<span>{{site.position}}</span>
+						</div>
+						<h3 class="per-h3 co-h1">{{site.name}}</h3>
+						<p class="per-p co-p1">{{site.manifesto}}</p>
+					</a>
+				</div>
+			</div>
+			<div class="cy-tb">
+				<h3>班 级 委 员</h3>
+			</div>
+			<div class="cy-com">
+				<div class="chengyuan cy-wy-color" v-for="classCommittee in classCommittees">
+					<a href="#">
+					<div class="imgbox">
+						<img :src="classCommittee.src"/>
+					</div>
+					<div class="per-occ cy-wy-kk">
+						<span>{{classCommittee.position}}</span>
+					</div>
+					<h3 class="per-h3 co-h2">{{classCommittee.name}}</h3>
+					<p class="per-p co-p2">{{classCommittee.manifesto}}</p>
+					</a>
+				</div>
+			</div>
+			<div class="cy-tb">
+				<h3>班 级 成 员</h3>
+			</div>
+			<div class="cy-com">
+				<div class="chengyuan cy-cy-color" v-for="member in members">
+					<a href="#">
+					<div class="imgbox">
+						<img :src="member.src"/>
+					</div>
+					<div class="per-occ cy-cy-kk">
+						<span>{{member.position}}</span>
+					</div>
+					<h3 class="per-h3 co-h3">{{member.name}}</h3>
+					<p class="per-p co-p3">{{member.manifesto}}</p>
+					</a>
+				</div>
+				
+			</div>
+		</div>
+	</body>
+	<script src="../js/zhujianbao/vue.min.js"></script>
+	<script src="../js/chengyuan-vue.js"></script>
+</html>

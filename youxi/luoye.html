@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background: url(img/bg.png) ;
+			}
+			.add{
+				width: 230px;
+				height: 40px;
+				background: rgb(73,214,62);
+				border-radius: 40px;
+				text-align: center;
+				line-height: 40px;
+				color: #333;
+				position: fixed;
+				bottom: 30px;
+				left: 30px;
+				cursor: pointer;
+			}
+			.active{
+				width:150px;
+				height: 150px;
+				position: fixed;
+				top: 0px;
+				left: 0;
+				transform: rotate(0deg);
+				opacity: 0;
+				transition: opacity linear 1s,transform linear 1s;
+				
+			}
+		</style>
+		<script src="../js/zhujianbao/jquery.slim.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				var speed = 5;
+				var timer;
+				var n1=0;
+				init(5);
+				function init(num){
+					clearInterval(timer);
+					createLeaf();
+					var n = 1;
+					var t1 = setInterval(function(){
+						n++;
+						if(n==num){  
+							clearInterval(t1);
+						}
+						createLeaf();
+					},200)
+				}
+				//创建树叶
+				function createLeaf(){
+					var leaf = $("<img />");
+					leaf.addClass("active");
+					leaf.appendTo($("body"));
+					leaf.attr("src","img/"+Math.ceil(Math.random()*11)+".png");
+					var rad =Math.floor(Math.random()*61)-30;//[-30,30];
+					leaf.attr("rad",rad)
+					var x = Math.floor(Math.random()*($(window).width()-leaf.width()));
+					leaf.css({"left":x,"opacity":1,"transform":"rotate("+rad+"deg)","top":"-50px"})					
+				}
+				//树叶掉落
+				dropOut()
+				function dropOut(){
+					var firstLeaf = $(".active").eq(0);
+					firstLeaf.css("transition","none");
+					var y = parseInt(firstLeaf.css("top"));
+					firstLeaf.css("top",y+speed);
+					var ro = firstLeaf.attr("rad")
+					if(firstLeaf.attr("rad")>=0){
+						n1+=0.5;
+						var n2 = (ro-0+n1);
+						if(n2>=90){
+							n2=90
+						}
+						firstLeaf.css("transform","rotate("+n2+"deg)");
+					}else{
+						n1-=0.5;
+						var n2 = (ro-0+n1);
+						if(n2<=-90){
+							n2=-90
+						}
+						firstLeaf.css("transform","rotate("+n2+"deg)");
+					}
+					if(y>=$(window).height()){
+						firstLeaf.remove();
+						createLeaf();
+						n1=0;
+					}
+					requestAnimationFrame(dropOut);
+				}	
+				//添加树叶
+				$(".add").click(function(){
+					init(3);
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div class="add">点击添加更多树叶</div>
+	</body>
+</html>
